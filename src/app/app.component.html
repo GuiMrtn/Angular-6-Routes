@@ -1,0 +1,37 @@
+<nav >
+    <div class="nav-wrapper teal">
+        <a href="#" class="brand-logo center">
+            Pokédex
+        </a>
+    </div>
+</nav>
+
+<!--Ici, on place la balise router-outlet. Ici, toutes les pages comporteront la barre de navigation, et le router-outlet injectera dans la page ce qu'aura choisi l'utilisateur. En fait le app.component-html contiendra les éléments enfants qui seront rajouté dans le router-outlet. Ainsi ce fichier app.component.html est le parent des fichier detail-pokemon et list-pokemon-->
+<router-outlet></router-outlet>
+
+<!-- On va couper/coller le code ci-dessous et le mettre dans list.pokemon.component-->
+<!-- 
+<div class="container">
+    <div class="row">
+        <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
+            <div class="card horizontal" pkmnBorderCard>
+                <div class="card-image">
+                    <img [src]="pokemon.picture">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ pokemon.name}}</p>
+                        <p><small> {{ pokemon.created | date:"dd/MM/yyyy" }} </small></p>
+                        <span 
+                            *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}"
+                        >
+                            {{ type }}
+                        </span>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+-->
+

@@ -1,0 +1,49 @@
+<!--On a créé un premier niveau d'affichage avec la directive ngIf. L'avantage de cette directive, c'est qu'on va afficher cette page que si nous avons un pokémon à afficher-->
+<div *ngIf="pokemon" class="row">
+    <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ pokemon.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="pokemon.picture">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ pokemon.name }}</strong></td>
+              </tr>
+              <tr>
+                <td>Points de vie</td>
+                <td><strong>{{ pokemon.hp }}</strong></td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td><strong>{{ pokemon.cp }}</strong></td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                    <!-- Ici, on a un *ngFor qui permet d'afficher les types du pokémon, avec le pipe pokemonTypeColor-->
+                  <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--Ici, nous avons une card-action qui va permettre de mettre en place un bouton retour-->
+        <div class="card-action">
+            <!--Ici, quand l'utilisateur cliquera sur le bouton retour, nous aimerions changer de page de manière dynamique. Ici, on va intercepter l'évènement click et on va créer une méthode goToPokemonList. Ensuite on va créer la logique de cette méthode dans le fichier detail-pokemon.component.ts -->
+          <a (click)="goToPokemonList()">Retour</a>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+<!--Ici, dans le cas où nous n'avons pas de pokémon, on renvoie un message d'erreur. C'est dans le cas où l'identifiant demandé n'existe pas -->
+<h4 *ngIf='!pokemon' class="center">Aucun pokémon à afficher !</h4>
